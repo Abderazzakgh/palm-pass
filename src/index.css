@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Biometric Payment System Design Tokens */
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 215 75% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 75% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 75% 20%;
+
+    --primary: 45 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 45 100% 70%;
+
+    --secondary: 215 75% 22%;
+    --secondary-foreground: 45 95% 95%;
+
+    --muted: 210 30% 94%;
+    --muted-foreground: 215 50% 40%;
+
+    --accent: 45 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 45 90% 85%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 45 95% 55%;
+
+    --radius: 1rem;
+    
+    /* Custom biometric system tokens */
+    --scanner-primary: 45 95% 55%;
+    --scanner-secondary: 215 75% 22%;
+    --scanner-glow: 45 100% 70%;
+    --tech-gradient: linear-gradient(135deg, hsl(45 95% 55%), hsl(215 75% 22%));
+    --tech-gradient-reverse: linear-gradient(135deg, hsl(215 75% 22%), hsl(45 95% 55%));
+    --gold-gradient: linear-gradient(135deg, hsl(45 100% 65%), hsl(45 90% 50%));
+    --navy-gradient: linear-gradient(135deg, hsl(215 80% 30%), hsl(215 70% 18%));
+    --scanner-gradient: linear-gradient(45deg, hsl(45 95% 55% / 0.15), hsl(215 75% 22% / 0.15));
+    --glass-bg: hsl(0 0% 100% / 0.85);
+    --glass-bg-dark: hsl(215 75% 22% / 0.95);
+    --shadow-glow: 0 0 40px hsl(45 95% 55% / 0.4);
+    --shadow-glow-strong: 0 0 60px hsl(45 95% 55% / 0.6), 0 0 30px hsl(45 100% 70% / 0.4);
+    --shadow-navy: 0 8px 32px hsl(215 75% 22% / 0.25);
+    --shadow-accent: 0 4px 20px hsl(215 75% 22% / 0.2);
+    --animation-scan: scan 2s ease-in-out infinite;
+    --animation-pulse: pulse-glow 3s ease-in-out infinite;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 75% 10%;
+    --foreground: 45 95% 95%;
+
+    --card: 215 70% 15%;
+    --card-foreground: 45 95% 95%;
+
+    --popover: 215 70% 15%;
+    --popover-foreground: 45 95% 95%;
+
+    --primary: 45 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 45 100% 70%;
+
+    --secondary: 215 60% 25%;
+    --secondary-foreground: 45 95% 95%;
+
+    --muted: 215 60% 25%;
+    --muted-foreground: 215 30% 70%;
+
+    --accent: 45 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 45 90% 85%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 30% 20%;
+    --input: 215 30% 20%;
+    --ring: 45 93% 47%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations for biometric scanner */
+@keyframes scan {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--scanner-primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--scanner-primary) / 0.6);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--accent) / 0.4);
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .glass-bg {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  .tech-gradient {
+    background: var(--tech-gradient);
+  }
+  
+  .tech-gradient-reverse {
+    background: var(--tech-gradient-reverse);
+  }
+  
+  .gold-gradient {
+    background: var(--gold-gradient);
+  }
+  
+  .navy-gradient {
+    background: var(--navy-gradient);
+  }
+  
+  .scanner-gradient {
+    background: var(--scanner-gradient);
+  }
+  
+  .glass-bg-dark {
+    background: var(--glass-bg-dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-glow-strong {
+    box-shadow: var(--shadow-glow-strong);
+  }
+  
+  .shadow-navy {
+    box-shadow: var(--shadow-navy);
+  }
+  
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+  
+  .animate-scan {
+    animation: var(--animation-scan);
+  }
+  
+  .animate-pulse-glow {
+    animation: var(--animation-pulse);
+  }
+  
+  .animate-ripple {
+    animation: ripple 2s infinite;
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+  }
+}
